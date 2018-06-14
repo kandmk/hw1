@@ -87,8 +87,9 @@ def evaluate(tokens):
             answer += line2[index+1]
         elif line2[index] == 'MINUS':
             answer -= line2[index+1]
-        index += 1
-    print "%s" % line2
+        else:
+            print 'Invalid syntax'
+        index += 2
     return answer
 
 
