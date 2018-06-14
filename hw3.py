@@ -55,8 +55,8 @@ def evaluate(tokens):
     answer = 0
     tokens.insert(0, {'type': 'PLUS'}) # Insert a dummy '+' token
     index = 1
-    line2 = []  #array_only plus & minus 
-    while index < len(tokens): #calculate_mult & div
+    line2 = []  #array only plus & minus 
+    while index < len(tokens):  #calculate mult & div
         if tokens[index]['type'] == 'NUMBER':
             if tokens[index-1]['type'] == 'PLUS':
                 line2.append('PLUS')
@@ -66,9 +66,9 @@ def evaluate(tokens):
                 line2.append(tokens[index]['number'])
             elif tokens[index-1]['type'] == 'MULT':
                 if tokens[index-3]['type'] == 'MULT' or 'DIV':
-                    numb = line2[-1]
-                    line2.pop()
-                    line2.append(numb * tokens[index]['number'])
+                    numb = line2[-1]   # the end of array
+                    line2.pop()  # delete the end of array
+                    line2.append(numb * tokens[index]['number']) # add new result
                 else:
                     line2.pop()
                     line2.append(tokens[index-2]['number'] * tokens[index]['number'])
@@ -82,7 +82,7 @@ def evaluate(tokens):
                     line2.append(tokens[index-2]['number'] / tokens[index]['number'])
         index += 1
     index = 0
-    while index < len(line2): #calcilate_plus&minus
+    while index < len(line2):  #calculate plus & minus
         if line2[index] == 'PLUS':
             answer += line2[index+1]
         elif line2[index] == 'MINUS':
