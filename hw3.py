@@ -52,7 +52,6 @@ def tokenize(line):
 
 
 def evaluate(tokens):
-    answer = 0
     tokens.insert(0, {'type': 'PLUS'}) # Insert a dummy '+' token
     index = 1
     line2 = []  #array only plus & minus 
@@ -81,6 +80,11 @@ def evaluate(tokens):
                     line2.pop()
                     line2.append(tokens[index-2]['number'] / tokens[index]['number'])
         index += 1
+    return secondevaluate(line2)
+
+    
+def secondevaluate(line2):
+    answer = 0
     index = 0
     while index < len(line2):  #calculate plus & minus
         if line2[index] == 'PLUS':
@@ -113,6 +117,7 @@ def runTest():
     test("1.0/4.0+1.2*4", 5.05)
     test("3+4-5*1.8", -2)
     test("5.0/2.0-3*4+6/2+1", -5.5)
+    test("5/2-3*4+6/2+1", -5.5)
     print "==== Test finished! ====\n"
 
 runTest()
