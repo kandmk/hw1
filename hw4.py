@@ -1,23 +1,21 @@
-with open("links.txt", "r") as f1:
+with open('links.txt') as f1:
     links = f1.read()
-    f1.close()
     leng = len(links) / 2
     number = 0
     link_dic = {}
-    for x in range(leng):
-        if links[2*x] == number:
-            link_dic[number] = link_dic[number] + links[2*x+1]
-        elif links[2*x] != number:
-            number += 1
-            link_dic[number] = link_dic[number] + links[2*x+1]
-        elif 2*x == len(links):
-            break
-    return(link_dic)
+    for line in f1:
+        links = line.split()
+        for link in links:
+            if link == number:
+                link_dic[number] = link_dic[number] + link
+            elif links[2*x] != number:
+                number += 1
+                link_dic[number] = link_dic[number] + link
+    print(link_dic)
     
 
 with open('pages.txt') as f2:
     pages = f2.read().split()
-    f2.close()
 def Find_number(start):
     start_num = 0
     for w in range(11955):
